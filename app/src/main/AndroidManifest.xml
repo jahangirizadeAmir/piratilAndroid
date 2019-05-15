@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.ms.piratilapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".Class.Font"
+        android:allowBackup="true"
+        android:icon="@mipmap/piratilcharacter"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/piratilcharacter"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Gamer.Activity.SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+
+
+        </activity>
+        <activity android:name=".Gamer.Activity.WinnerActivity" />
+        <activity android:name=".Gamer.Activity.LevelActivity" />
+        <activity android:name=".ChooseAcountActivity" />
+        <activity android:name=".Gamer.Activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Gamer.Activity.EnterCodeActivity" />
+        <activity android:name=".Gamer.Activity.ComplateProfileActivity" />
+        <activity android:name=".Gamer.Activity.MainActivity"></activity>
+    </application>
+
+</manifest>
