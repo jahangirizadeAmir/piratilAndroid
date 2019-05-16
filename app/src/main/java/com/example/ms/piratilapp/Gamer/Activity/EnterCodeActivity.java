@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import com.example.ms.piratilapp.Class.*;
+import com.example.ms.piratilapp.ServerCallback;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -53,100 +54,70 @@ public class EnterCodeActivity extends AppCompatActivity {
 
 
         requestQueue = Volley.newRequestQueue(EnterCodeActivity.this);
-        defineObjects();
-        Intent intent = getIntent();
-        Boolean aBoolean = intent.getBooleanExtra("submit",true);
+        final Intent intent = getIntent();
+        Boolean submit = intent.getBooleanExtra("submit", true);
+        Boolean dataComplete = intent.getBooleanExtra("dataComplete", false);
         final String mobile = intent.getStringExtra("mobile");
         final String type = intent.getStringExtra("type");
+
+        defineObjects();
 
         btn_code_registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(edt_enter_code.getText().toString().equals("")){
+                if (edt_enter_code.getText().toString().equals("")) {
                     Toast.makeText(EnterCodeActivity.this, "کد به درستی وارد نشده است!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
+
+                    HashMap<String, String> stringStringHashMap = new HashMap<>();
+                    stringStringHashMap.put("mobile", mobile);
+                    stringStringHashMap.put("type", type);
+                    stringStringHashMap.put("code", edt_enter_code.getText().toString().trim());
 
                     final ProgressDialog progressDialog = new ProgressDialog(EnterCodeActivity.this);
                     progressDialog.setMessage("لطفا منتظر باشید...");
                     progressDialog.setCancelable(false);
                     progressDialog.show();
 
-                    StringRequest stringRequest = new StringRequest(
-                            Request.Method.POST,
-                            "http://piratil.com/game/request/checkCode.php",
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-
-                                    progressDialog.dismiss();
-
-                                    try {
-                                        JSONObject jsonObject = new JSONObject(response);
-
-
-                                        if(!jsonObject.getBoolean("version")){
-                                            AlertDialog.Builder builder = new AlertDialog.Builder(EnterCodeActivity.this);
-                                            builder.setTitle("خطایی پیش آمده");
-                                            builder.setMessage("نسخه جدید را دانلود کنید");
-                                            builder.setCancelable(false);
-                                            builder.show();
-                                        }else {
-                                            if (jsonObject.getBoolean("error")) {
-                                                customToast customToast = new customToast(getApplicationContext(), jsonObject.getString("MSG"), com.example.ms.piratilapp.Class.customToast.danger, com.example.ms.piratilapp.Class.customToast.Bottom);
-                                                customToast.getToast().show();
-                                            } else {
-                                                String token = md5(jsonObject.getString("token"));
-                                                SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
-                                                sharedPreferences.edit().putString("token", token).apply();
-                                                sharedPreferences.edit().putString("mobile", mobile).apply();
-
-
-                                                Intent intent = new Intent(EnterCodeActivity.this, ComplateProfileActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
+                    vollayRequest vollayRequest = new vollayRequest();
+                    vollayRequest.requester(stringStringHashMap, EnterCodeActivity.this, "checkCode.php", new ServerCallback() {
+                        @Override
+                        public void onSuccess(JSONObject result) {
+                            try {
+                                progressDialog.dismiss();
+                                if (result.getBoolean("error")) {
+                                    customToast customToast = new customToast(
+                                            getApplicationContext(),
+                                            result.getString("MSG"),
+                                            com.example.ms.piratilapp.Class.customToast.danger,
+                                            com.example.ms.piratilapp.Class.customToast.Bottom
+                                    );
+                                    customToast.getToast().show();
+                                } else {
+                                    SharedPreferences sharedPreferences = getSharedPreferences("Token", MODE_PRIVATE);
+                                    sharedPreferences.edit().putString("mobile",mobile).apply();
+                                    sharedPreferences.edit().putString("token",result.getString("token")).apply();
+                                    Intent intent1 = new Intent(EnterCodeActivity.this,MainActivity.class);
+                                    startActivity(intent1);
+                                    finish();
                                 }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
+                    });
 
-                    ){
+                    txt_resend_code.setEnabled(false);
+                    txt_resend_code.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            HashMap<String,String> stringStringHashMap = new HashMap<>();
-                            stringStringHashMap.put("appVersion","1");
-                            stringStringHashMap.put("device","android");
-                            stringStringHashMap.put("mobile",mobile);
-                            stringStringHashMap.put("type",type);
-                            stringStringHashMap.put("code",edt_enter_code.getText().toString().trim());
-                            return  stringStringHashMap;
+                        public void onClick(View v) {
+                            Toast.makeText(EnterCodeActivity.this, "!", Toast.LENGTH_SHORT).show();
                         }
-                    };
-
-
-requestQueue.add(stringRequest);
+                    });
                 }
             }
         });
-
-        txt_resend_code.setEnabled(false);
-        txt_resend_code.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(EnterCodeActivity.this, "!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         countDownTimer = new CountDownTimer(60000, 1000) {
             @SuppressLint("DefaultLocale")
@@ -166,10 +137,8 @@ requestQueue.add(stringRequest);
                 txt_resend_code.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         countDownTimer.start();
                         txt_resend_code.setTextColor(getResources().getColor(R.color.link_color_disable));
-
                         final ProgressDialog progressDialog = new ProgressDialog(EnterCodeActivity.this);
                         progressDialog.setMessage("لطفا منتظر باشید...");
                         progressDialog.setCancelable(false);
@@ -186,13 +155,13 @@ requestQueue.add(stringRequest);
 
                                         try {
                                             JSONObject jsonObject = new JSONObject(response);
-                                            if(!jsonObject.getBoolean("version")){
+                                            if (!jsonObject.getBoolean("version")) {
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(EnterCodeActivity.this);
                                                 builder.setTitle("خطایی پیش آمده");
                                                 builder.setMessage("نسخه جدید را دانلود کنید");
                                                 builder.setCancelable(false);
                                                 builder.show();
-                                            }else{
+                                            } else {
 
                                                 customToast customToast = new customToast(getApplicationContext(), "ارسال مجدد کد با موفقیت انجام شد", com.example.ms.piratilapp.Class.customToast.succ, com.example.ms.piratilapp.Class.customToast.Top);
                                                 customToast.getToast().show();
@@ -212,14 +181,14 @@ requestQueue.add(stringRequest);
 
                                     }
                                 }
-                        ){
+                        ) {
                             @Override
                             protected Map<String, String> getParams() throws AuthFailureError {
-                                HashMap<String,String> stringStringHashMap = new HashMap<>();
-                                stringStringHashMap.put("appVersion","1");
-                                stringStringHashMap.put("device","android");
+                                HashMap<String, String> stringStringHashMap = new HashMap<>();
+                                stringStringHashMap.put("appVersion", "1");
+                                stringStringHashMap.put("device", "android");
                                 stringStringHashMap.put("mobile", mobile);
-                                return  stringStringHashMap;
+                                return stringStringHashMap;
                             }
                         };
                         requestQueue.add(stringRequest);
@@ -237,7 +206,6 @@ requestQueue.add(stringRequest);
     }
 
     private void defineObjects() {
-
         btn_code_registration=(Button)findViewById(R.id.btn_code_registration);
         edt_enter_code=(EditText) findViewById(R.id.edt_enter_code);
         txt_resend_code=(TextView) findViewById(R.id.txt_resend_code);
@@ -247,31 +215,6 @@ requestQueue.add(stringRequest);
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    public static final String md5(final String s) {
-        final String MD5 = "MD5";
-        try {
-            // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest
-                    .getInstance(MD5);
-            digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
-
-            // Create Hex String
-            StringBuilder hexString = new StringBuilder();
-            for (byte aMessageDigest : messageDigest) {
-                String h = Integer.toHexString(0xFF & aMessageDigest);
-                while (h.length() < 2)
-                    h = "0" + h;
-                hexString.append(h);
-            }
-            return hexString.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
 }

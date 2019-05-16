@@ -13,6 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ms.piratilapp.R;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
@@ -44,6 +48,7 @@ public class DimondFinderFragment extends Fragment {
     LocationEngine getLocationEngine;
     Location location;
     LocationEngine locationEngine;
+    RequestQueue requestQueue;
 
     @Nullable
     @Override
@@ -51,6 +56,12 @@ public class DimondFinderFragment extends Fragment {
 
         Mapbox.getInstance(getContext(), "pk.eyJ1IjoiZGFsaXJlemEiLCJhIjoiY2p1Z2k1cXZsMHBkZzQ5cnIxajA2c2RlNyJ9.UOBgdrt6MM5glyeBn4xkSw");
         View view = inflater.inflate(R.layout.fragment_dimond_finder,container,false);
+
+        requestQueue = Volley.newRequestQueue(getContext());
+
+
+
+
 
         mapView = view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
@@ -77,6 +88,8 @@ public class DimondFinderFragment extends Fragment {
 
                         LocationComponent locationComponent = mapboxMap.getLocationComponent();
                         locationComponent.activateLocationComponent(locationComponentActivationOptions);
+
+
 
 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
 
