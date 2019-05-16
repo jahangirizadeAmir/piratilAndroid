@@ -107,7 +107,6 @@ public class ComplateProfileActivity extends AppCompatActivity {
                                                 sharedPreferences.edit().putBoolean("login", true).apply();
                                                 sharedPreferences.edit().putString("token", token).apply();
                                                 sharedPreferences.edit().putString("mobile", mobile).apply();
-
                                                 Intent intent = new Intent(ComplateProfileActivity.this, MainActivity.class);
                                                 startActivity(intent);
                                                 finish();

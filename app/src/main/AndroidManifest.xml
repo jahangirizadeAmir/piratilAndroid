@@ -25,15 +25,17 @@
         <activity android:name=".Gamer.Activity.LevelActivity" />
         <activity android:name=".ChooseAcountActivity" />
         <activity android:name=".Gamer.Activity.LoginActivity">
+
+        </activity>
+        <activity android:name=".Gamer.Activity.EnterCodeActivity" />
+        <activity android:name=".Gamer.Activity.ComplateProfileActivity" />
+        <activity android:name=".Gamer.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Gamer.Activity.EnterCodeActivity" />
-        <activity android:name=".Gamer.Activity.ComplateProfileActivity" />
-        <activity android:name=".Gamer.Activity.MainActivity"></activity>
     </application>
 
 </manifest>
