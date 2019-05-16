@@ -10,12 +10,19 @@ import android.view.ViewGroup;
 
 import com.example.ms.piratilapp.R;
 import com.mapbox.android.core.location.LocationEngine;
+import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
+import com.mapbox.mapboxsdk.location.modes.CameraMode;
+import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+
+import java.util.List;
 
 public class DimondFinderFragment extends Fragment {
 
@@ -34,10 +41,13 @@ public class DimondFinderFragment extends Fragment {
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(@NonNull MapboxMap mapboxMap) {
+            public void onMapReady(@NonNull final MapboxMap mapboxMap) {
                 mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
+
+                        enableLocationComponent();
+                        map = mapboxMap;
 
 // Map is set up and the style has loaded. Now you can add data or make other map adjustments
 
@@ -49,6 +59,44 @@ public class DimondFinderFragment extends Fragment {
 
         return view;
 
+    }
+
+    private void enableLocationComponent() {
+        // Check if permissions are enabled and if not request
+        if (PermissionsManager.areLocationPermissionsGranted(getContext())) {
+
+            // Get an instance of the component
+            LocationComponent locationComponent = map.getLocationComponent();
+
+            // Activate with a built LocationComponentActivationOptions object
+            locationComponent.activateLocationComponent(LocationComponentActivationOptions.builder(getContext(), map.getStyle()).build());
+
+            // Enable to make component visible
+            locationComponent.setLocationComponentEnabled(true);
+
+            // Set the component's camera mode
+            locationComponent.setCameraMode(CameraMode.TRACKING);
+
+            // Set the component's render mode
+            locationComponent.setRenderMode(RenderMode.COMPASS);
+
+        } else {
+
+            permissionsManager = new PermissionsManager(new PermissionsListener() {
+                @Override
+                public void onExplanationNeeded(List<String> permissionsToExplain) {
+
+                }
+
+                @Override
+                public void onPermissionResult(boolean granted) {
+
+                }
+            });
+
+            permissionsManager.requestLocationPermissions(getActivity());
+
+        }
     }
 
     @Override
