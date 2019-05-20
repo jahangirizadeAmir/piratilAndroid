@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.gauravk.bubblenavigation:bubblenavigation:1.0.7@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/15e61b7660fc9ab5b7389792c33aa2ad/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/15e61b7660fc9ab5b7389792c33aa2ad/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.gauravk.bubblenavigation/bubblenavigation/1.0.7/f07957574b22fb02ffc3805e934010d0bf07d1e4/bubblenavigation-1.0.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
