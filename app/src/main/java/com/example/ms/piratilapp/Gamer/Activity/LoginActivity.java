@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import com.example.ms.piratilapp.Class.*;
+import com.example.ms.piratilapp.ServerCallback;
 
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -33,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btn_login;
     EditText edt_phone_number;
-    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
 
         defineObjects();
 
-        requestQueue = Volley.newRequestQueue(this);
 
 
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -57,64 +56,34 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
 
+                    HashMap<String,String> stringStringHashMap = new HashMap<>();
+                    stringStringHashMap.put("mobile",edt_phone_number.getText().toString().trim());
                     final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
                     progressDialog.setMessage("لطفا منتظر باشید...");
                     progressDialog.setCancelable(false);
                     progressDialog.show();
 
-                    StringRequest stringRequest = new StringRequest(
-                            Request.Method.POST,
-                            "http://piratil.com/game/request/submitUser.php",
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
 
-                                    progressDialog.dismiss();
-
-                                    try {
-                                        JSONObject jsonObject = new JSONObject(response);
-                                        if(!jsonObject.getBoolean("version")){
-                                            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                            builder.setTitle("خطایی پیش آمده");
-                                            builder.setMessage("نسخه جدید را دانلود کنید");
-                                            builder.setCancelable(false);
-                                            builder.show();
-                                        }else{
-                                            String type = jsonObject.getString("type");
-                                            Boolean submit = jsonObject.getBoolean("submit");
-                                            Intent intent = new Intent(LoginActivity.this,EnterCodeActivity.class);
-                                            intent.putExtra("submit",submit);
-                                            intent.putExtra("mobile",edt_phone_number.getText().toString().trim());
-                                            intent.putExtra("type",type);
-                                            startActivity(intent);
-                                            finish();
-
-                                        }
-
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-
-                                }
-                            }
-                    ){
+                    vollayRequest vollayRequest = new vollayRequest();
+                       vollayRequest.requester(stringStringHashMap, LoginActivity.this, "submitUser.php", new ServerCallback() {
                         @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            HashMap<String,String> stringStringHashMap = new HashMap<>();
-                            stringStringHashMap.put("appVersion","1");
-                            stringStringHashMap.put("device","android");
-                            stringStringHashMap.put("mobile",edt_phone_number.getText().toString().trim());
-                            return  stringStringHashMap;
+                        public void onSuccess(JSONObject result) {
+                            progressDialog.dismiss();
+                            try {
+                                    Intent intent = new Intent(LoginActivity.this,EnterCodeActivity.class);
+                                    intent.putExtra("submit",result.getBoolean("submit"));
+                                    intent.putExtra("mobile",edt_phone_number.getText().toString().trim());
+                                    intent.putExtra("dataComplete",result.getBoolean("dataComplete"));
+                                    intent.putExtra("type",result.getString("type"));
+                                    startActivity(intent);
+                                    finish();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
-                    };
-                    requestQueue.add(stringRequest);
+                    });
 //
 //                    Intent intent = new Intent(LoginActivity.this, EnterCodeActivity.class);
 //                    startActivity(intent);
