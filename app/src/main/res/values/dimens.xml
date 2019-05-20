@@ -14,4 +14,6 @@
     <dimen name="text_size_24">24sp</dimen>
     <dimen name="text_size_22">22sp</dimen>
     <dimen name="padding_40">40dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_1">1dp</dimen>
 </resources>
