@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_map"
-    tools:context=".Gamer.Activity.Main3Activity">
+    tools:context=".NewActivity.Main3Activity">
 
     <ImageView
         android:id="@+id/img_user_info_frame"
@@ -75,6 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="جستجوی الماس"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/img_dimond_finder"
         app:layout_constraintEnd_toEndOf="@+id/imageView15"
@@ -86,8 +87,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="چالش هفتگی"
-        android:textColor="@color/colorBlack"
+        android:text="@string/weekly_challange"
+        android:textColor="@color/colorWhite"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="@+id/img_week_challange"
         app:layout_constraintEnd_toEndOf="@+id/imageView14"
@@ -114,6 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/img_user_info_frame"
         app:layout_constraintEnd_toEndOf="@+id/img_user_info_frame"
         app:layout_constraintHorizontal_bias="0.314"

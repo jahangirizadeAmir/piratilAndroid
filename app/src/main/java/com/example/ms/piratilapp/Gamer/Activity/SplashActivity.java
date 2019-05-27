@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.ms.piratilapp.NewActivity.Main3Activity;
 import com.example.ms.piratilapp.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
                 Boolean login = sharedPreferences.getBoolean("login", false);
                 if (login){
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, Main3Activity.class);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);

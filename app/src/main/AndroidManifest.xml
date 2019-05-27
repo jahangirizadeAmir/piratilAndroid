@@ -15,20 +15,21 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Gamer.Activity.Main3Activity">
+        <activity android:name=".NewActivity.MenuActivity"></activity>
+        <activity android:name=".NewActivity.Main3Activity"></activity>
+        <activity android:name=".NewActivity.Main2Activity" />
+
+        <acxtivity android:name=".Gamer.Activity.TransactionsActivity" />
+
+        <activity android:name=".NewActivity.RollsActivity" />
+        <activity
+            android:name=".Gamer.Activity.SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".Gamer.Activity.Main2Activity" />
-        <acxtivity android:name=".Gamer.Activity.TransactionsActivity" />
-        <activity android:name=".Gamer.Activity.RollsActivity" />
-        <activity
-            android:name=".Gamer.Activity.SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
         </activity>
         <activity android:name=".Gamer.Activity.WinnerActivity" />
         <activity android:name=".Gamer.Activity.LevelActivity" />

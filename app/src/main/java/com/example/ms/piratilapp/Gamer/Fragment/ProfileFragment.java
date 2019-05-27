@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ms.piratilapp.Gamer.Activity.MainActivity;
-import com.example.ms.piratilapp.Gamer.Activity.RollsActivity;
+import com.example.ms.piratilapp.NewActivity.RollsActivity;
 import com.example.ms.piratilapp.R;
 
 public class ProfileFragment extends Fragment {

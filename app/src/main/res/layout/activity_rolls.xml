@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_star_bg"
-    tools:context=".Gamer.Activity.RollsActivity">
+    tools:context=".NewActivity.RollsActivity">
 
 
     <android.support.constraint.ConstraintLayout

@@ -4,6 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Gamer.Activity.Main2Activity">
+    tools:context=".NewActivity.Main2Activity">
 
+    <TextView
+        android:id="@+id/txt_incoming_diamond2"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FFB600"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:layout_editor_absoluteX="146dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="411dp"
+        android:layout_height="302dp"
+        android:src="@drawable/ic_logo" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="120dp"
+        android:layout_height="302dp"
+        android:background="@drawable/bg_white_stroke"
+        android:src="@drawable/phone_number_box"
+        tools:layout_editor_absoluteY="302dp" />
 </android.support.constraint.ConstraintLayout>

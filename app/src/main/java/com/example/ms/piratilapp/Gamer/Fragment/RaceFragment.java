@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ms.piratilapp.Gamer.Activity.Main2Activity;
-import com.example.ms.piratilapp.Gamer.Activity.Main3Activity;
+import com.example.ms.piratilapp.NewActivity.Main2Activity;
 import com.example.ms.piratilapp.R;
 
 public class RaceFragment extends Fragment {
