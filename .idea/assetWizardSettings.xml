@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_stars" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../UI/shape&amp;object/stars.svg" />
+                            <entry key="outputName" value="ic_artboard" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../UI/New Ui/NS/SVG/Artboard.svg" />
                           </map>
                         </option>
                       </PersistentState>

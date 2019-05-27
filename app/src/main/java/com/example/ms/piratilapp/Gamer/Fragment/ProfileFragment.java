@@ -1,5 +1,6 @@
 package com.example.ms.piratilapp.Gamer.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ms.piratilapp.Gamer.Activity.MainActivity;
+import com.example.ms.piratilapp.Gamer.Activity.RollsActivity;
 import com.example.ms.piratilapp.R;
 
 public class ProfileFragment extends Fragment {
@@ -27,6 +30,38 @@ public class ProfileFragment extends Fragment {
         btn_checkout=(Button)view.findViewById(R.id.btn_checkout);
         btn_roles=(Button)view.findViewById(R.id.btn_roles);
         txt_dimond_count=(TextView) view.findViewById(R.id.txt_dimond_count);
+
+        btn_roles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RollsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_transactions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RollsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RollsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RollsActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

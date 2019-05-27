@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#DF1D59</color>
     <color name="colorAccent">#FF4081</color>
     <color name="edit_text_color">#3525ae</color>
     <color name="border_color">#979797</color>
@@ -25,6 +25,8 @@
     <color name="text_color_winner">#C46CD7</color>
     <color name="link_color_enable">#0000EE</color>
     <color name="link_color_disable">#800000EE</color>
+    <color name="yellow">#FFB600</color>
+    <color name="red">#DF1D59</color>
 
 
 </resources>

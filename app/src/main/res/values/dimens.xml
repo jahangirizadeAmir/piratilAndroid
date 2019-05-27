@@ -16,4 +16,7 @@
     <dimen name="padding_40">40dp</dimen>
     <dimen name="margin_3">3dp</dimen>
     <dimen name="margin_1">1dp</dimen>
+    <dimen name="radius_50">50dp</dimen>
+    <dimen name="width_15">15dp</dimen>
+    <dimen name="radius_360">360dp</dimen>
 </resources>

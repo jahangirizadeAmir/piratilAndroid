@@ -3,7 +3,7 @@
 
     <color name="backAlert">#b8b8b8</color>
     <color name="backInfo">#009ed3</color>
-    <color name="backDanger">#ba0000</color>
+    <color name="backDanger">#BA0000</color>
     <color name="backSucc">#00e52a</color>
 
     <color name="textAlert">#000000</color>

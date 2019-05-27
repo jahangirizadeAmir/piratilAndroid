@@ -15,25 +15,28 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Gamer.Activity.SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Gamer.Activity.Main3Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Gamer.Activity.Main2Activity" />
+        <acxtivity android:name=".Gamer.Activity.TransactionsActivity" />
+        <activity android:name=".Gamer.Activity.RollsActivity" />
+        <activity
+            android:name=".Gamer.Activity.SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
         <activity android:name=".Gamer.Activity.WinnerActivity" />
         <activity android:name=".Gamer.Activity.LevelActivity" />
         <activity android:name=".ChooseAcountActivity" />
-        <activity android:name=".Gamer.Activity.LoginActivity">
-
-        </activity>
+        <activity android:name=".Gamer.Activity.LoginActivity" />
         <activity android:name=".Gamer.Activity.EnterCodeActivity" />
         <activity android:name=".Gamer.Activity.ComplateProfileActivity" />
-        <activity android:name=".Gamer.Activity.MainActivity">
-
-        </activity>
+        <activity android:name=".Gamer.Activity.MainActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backbg1"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_game_name_frame"
+        android:layout_width="298dp"
+        android:layout_height="298dp"
+        app:layout_constraintBottom_toTopOf="@+id/img_incoming_diamond"
+        app:layout_constraintEnd_toEndOf="@+id/img_game_name"
+        app:layout_constraintStart_toStartOf="@+id/img_game_name"
+        app:layout_constraintTop_toTopOf="@+id/img_game_name"
+        app:srcCompat="@drawable/bg_yellow_stroke" />
+
+    <ImageView
+        android:id="@+id/img_incoming_dimond_frame"
+        android:layout_width="310dp"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_incoming_diamond"
+        app:layout_constraintEnd_toEndOf="@+id/img_incoming_diamond"
+        app:layout_constraintStart_toStartOf="@+id/img_incoming_diamond"
+        app:layout_constraintTop_toTopOf="@+id/img_incoming_diamond"
+        app:srcCompat="@drawable/bg_yellow_stroke" />
+
+    <ImageView
+        android:id="@+id/img_user_status"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="129dp"
+        android:layout_marginLeft="129dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/img_game_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/user_info_frame" />
+
+    <ImageView
+        android:id="@+id/img_game_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/img_incoming_diamond"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_user_status"
+        app:srcCompat="@drawable/img_booling"
+        app:tintMode="screen" />
+
+    <ImageView
+        android:id="@+id/img_incoming_diamond"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_game_name"
+        app:srcCompat="@drawable/asset_21_2x" />
+
+    <TextView
+        android:id="@+id/txt_name_family"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginRight="130dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FFB600"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_user_status"
+        app:layout_constraintEnd_toEndOf="@+id/img_user_status"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/img_user_status"
+        app:layout_constraintTop_toTopOf="@+id/img_user_status" />
+
+    <TextView
+        android:id="@+id/txt_rancking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/img_user_status"
+        app:layout_constraintEnd_toEndOf="@+id/img_user_status"
+        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintStart_toStartOf="@+id/img_user_status"
+        app:layout_constraintTop_toTopOf="@+id/img_user_status"
+        app:layout_constraintVertical_bias="0.593" />
+
+    <TextView
+        android:id="@+id/txt_game_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="96dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#DF1D59"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/img_incoming_diamond"
+        app:layout_constraintEnd_toEndOf="@+id/img_game_name"
+        app:layout_constraintStart_toStartOf="@+id/img_game_name"
+        app:layout_constraintTop_toTopOf="@+id/img_game_name" />
+
+    <TextView
+        android:id="@+id/txt_incoming_diamond"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FFB600"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_incoming_diamond"
+        app:layout_constraintEnd_toEndOf="@+id/img_incoming_diamond"
+        app:layout_constraintStart_toStartOf="@+id/img_incoming_diamond"
+        app:layout_constraintTop_toTopOf="@+id/img_incoming_diamond" />
+
+</android.support.constraint.ConstraintLayout>

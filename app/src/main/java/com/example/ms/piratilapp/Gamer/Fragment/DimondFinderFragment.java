@@ -59,10 +59,6 @@ public class DimondFinderFragment extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getContext());
 
-
-
-
-
         mapView = view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
